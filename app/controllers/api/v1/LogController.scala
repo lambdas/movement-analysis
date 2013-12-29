@@ -1,0 +1,30 @@
+package controllers.api.v1
+
+import play.api._
+import play.api.mvc._
+import play.api.data.Form
+import play.api.data.Forms._
+import play.api.data.format.Formats._
+import play.api.libs.json.Json
+import models._
+import controllers.RichForm._
+
+object LogController extends Controller {
+
+  protected val createForm = Form(
+    mapping(
+      "deviceId" -> nonEmptyText,
+      "x"        -> of[Double],
+      "y"        -> of[Double]
+    )(LogRecord.apply)
+     (LogRecord.unapply(_).map(t => (t._2, t._3, t._4)))
+  )
+
+  def create = Action(parse.json) { implicit request =>
+    createForm.bindFromRequest.withSuccess { logRecord =>
+      LogRecord.create(logRecord)
+      Ok(Json.obj())
+    }
+  }
+
+}
