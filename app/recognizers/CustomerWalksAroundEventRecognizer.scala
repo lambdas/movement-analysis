@@ -1,8 +1,8 @@
-package observers
+package recognizers
 
 import models._
 
-class CustomerWalksAroundEventObserver(timeThresholdInSeconds: Long = 5 * 60, radius: Double = 5) extends EventObserver {
+class CustomerWalksAroundEventRecognizer(timeThresholdInSeconds: Long = 5 * 60, radius: Double = 5) extends EventRecognizer {
 
   override def observe(listLogRecords: (Long) => Seq[LogRecord] = LogRecord.list) =
     ( for (

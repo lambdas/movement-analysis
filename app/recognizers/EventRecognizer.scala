@@ -1,8 +1,8 @@
-package observers
+package recognizers
 
 import models._
 
-trait EventObserver {
+trait EventRecognizer {
 
   def observe(listLogRecords: (Long) => Seq[LogRecord]): Seq[Event]
 

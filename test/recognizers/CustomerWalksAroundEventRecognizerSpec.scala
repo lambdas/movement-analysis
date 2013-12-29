@@ -1,11 +1,11 @@
-package observers
+package recognizers
 
 import org.scalatest.{Matchers, FlatSpec}
 import models._
 
-class CustomerWalksAroundObserverSpec extends FlatSpec with Matchers {
+class CustomerWalksAroundEventRecognizerSpec extends FlatSpec with Matchers {
 
-  val observer = new CustomerWalksAroundEventObserver
+  val observer = new CustomerWalksAroundEventRecognizer
 
   "CustomerWalksAroundEventObserver" should "not recognize event if customer stays for 3 minutes only" in {
     val records = Seq(LogRecord("john's phone", LogRecord.currentUnixTime - 3 * 60, Point(0, 0)))
