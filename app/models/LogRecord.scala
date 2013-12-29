@@ -60,6 +60,6 @@ object LogRecord {
       ).as(simple *)
     }
 
-  protected def currentUnixTime(): Long = System.currentTimeMillis() / 1000L
+  def currentUnixTime(): Long = System.currentTimeMillis() / 1000L
 
 }
