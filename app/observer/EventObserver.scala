@@ -1,5 +1,0 @@
-package observer
-
-class EventObserver {
-
-}

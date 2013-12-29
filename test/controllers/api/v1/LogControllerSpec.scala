@@ -14,8 +14,8 @@ class LogControllerSpec extends AppSpec {
     result.json should equal (obj(
       "errors" -> obj(
         "deviceId" -> arr("This field is required"),
-        "x"        -> arr("This field is required"),
-        "y"        -> arr("This field is required")
+        "pos.x"    -> arr("This field is required"),
+        "pos.y"    -> arr("This field is required")
       )
     ))
   }
@@ -23,8 +23,10 @@ class LogControllerSpec extends AppSpec {
   it should "create log record if all parameters are valid" in {
     val result = post(s"/api/v1/log", obj(
       "deviceId" -> "john's phone",
-      "x"        -> "42",
-      "y"        -> "42"
+      "pos"      -> obj(
+        "x"        -> "42",
+        "y"        -> "42"
+      )
     ))
 
     result.status should equal (OK)
@@ -33,8 +35,7 @@ class LogControllerSpec extends AppSpec {
 
     val newLogRecord = LogRecord.list().head
     newLogRecord.deviceId should be ("john's phone")
-    newLogRecord.x should be (42)
-    newLogRecord.y should be (42)
+    newLogRecord.pos should be (Point(42, 42))
     newLogRecord.unixTime should be (LogRecord.currentUnixTime +- 1)
   }
 

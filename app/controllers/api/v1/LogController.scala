@@ -14,10 +14,11 @@ object LogController extends Controller {
   protected val createForm = Form(
     mapping(
       "deviceId" -> nonEmptyText,
-      "x"        -> of[Double],
-      "y"        -> of[Double]
-    )(LogRecord.apply)
-     (LogRecord.unapply(_).map(t => (t._1, t._3, t._4)))
+      "pos"      -> mapping(
+        "x"        -> of[Double],
+        "y"        -> of[Double]
+      )(Point.apply)(Point.unapply)
+    )(LogRecord.apply)(LogRecord.unapply(_).map(t => (t._1, t._3)))
   )
 
   def create = Action(parse.json) { implicit request =>
