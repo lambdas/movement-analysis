@@ -35,7 +35,7 @@ class LogControllerSpec extends AppSpec {
     newLogRecord.deviceId should be ("john's phone")
     newLogRecord.x should be (42)
     newLogRecord.y should be (42)
-    newLogRecord.unixTime should be (LogRecord.currentUnixTime() +- 1)
+    newLogRecord.unixTime should be (LogRecord.currentUnixTime +- 1)
   }
 
 }

@@ -17,7 +17,7 @@ object LogController extends Controller {
       "x"        -> of[Double],
       "y"        -> of[Double]
     )(LogRecord.apply)
-     (LogRecord.unapply(_).map(t => (t._2, t._3, t._4)))
+     (LogRecord.unapply(_).map(t => (t._1, t._3, t._4)))
   )
 
   def create = Action(parse.json) { implicit request =>
