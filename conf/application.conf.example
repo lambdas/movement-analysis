@@ -35,7 +35,7 @@ application.langs="en"
 #
 db.default.driver=org.postgresql.Driver
 db.default.url="jdbc:postgresql://localhost/movement"
-db.default.user=paul
+db.default.user=""
 db.default.password=""
 
 # Evolutions
